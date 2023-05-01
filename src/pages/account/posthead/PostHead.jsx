@@ -44,31 +44,35 @@ function PostHead() {
   }, [image]);
 
   function handleClick() {
-    let userData = JSON.parse(localStorage.getItem("userData"));
-    let username = userData.username;
-    let userObj = {
-      username: username,
-      images:
-        "https://tse2.mm.bing.net/th?id=OIP.cphbUmdFsam1huiAHaOnGwHaFB&pid=Api&P=0",
-    };
-    let tweetObj = {
-      content: text,
-      image: image,
-      likeCount: 0,
-      iscomment: false,
-      commentCount: 0,
-      isretweet: false,
-      reTweetsCount: 0,
-      isLiked: false,
-      poll: 0,
-      ispoll: false,
-      share: 0,
-      isshare: false,
-    };
-    Object.preventExtensions(tweetObj);
-    Object.preventExtensions(userObj);
-    setTweet([tweetObj, ...tweet]);
-    setUser([userObj, ...user]);
+    if (image || text) {
+      let userData = JSON.parse(localStorage.getItem("userData"));
+      let username = userData.username;
+      let userObj = {
+        username: username,
+        images:
+          "https://tse2.mm.bing.net/th?id=OIP.cphbUmdFsam1huiAHaOnGwHaFB&pid=Api&P=0",
+      };
+      let tweetObj = {
+        content: text,
+        image: image,
+        likeCount: 0,
+        iscomment: false,
+        commentCount: 0,
+        isretweet: false,
+        reTweetsCount: 0,
+        isLiked: false,
+        poll: 0,
+        ispoll: false,
+        share: 0,
+        isshare: false,
+      };
+      Object.preventExtensions(tweetObj);
+      Object.preventExtensions(userObj);
+      setTweet([tweetObj, ...tweet]);
+      setUser([userObj, ...user]);
+    } else {
+      console.log("select something");
+    }
   }
 
   return (

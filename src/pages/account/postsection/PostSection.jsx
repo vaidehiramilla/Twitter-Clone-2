@@ -46,6 +46,7 @@ export default function PostSection() {
           };
           setTweet((prevState) => {
             const updatedTweets = [...prevState];
+            
             updatedTweets[index] = res;
             return updatedTweets;
           });

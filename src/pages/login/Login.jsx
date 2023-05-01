@@ -13,8 +13,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [islogin, setlogin] = useRecoilState(isLogin);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  
 
   const [errorEmail, setErrorEmail] = useState();
   const [errorPass, setErrorPass] = useState("");
@@ -30,9 +29,9 @@ function Login() {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     const user = users.find((user) => {
       return (
-        user.name.toString() === name.toString() ||
+        user.name.toString() === email.toString() ||
         user.email.toString() === email.toString() ||
-        user.phone.toString() === phone.toString()
+        user.phone.toString() === email.toString()
       );
     });
 

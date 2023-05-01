@@ -37,12 +37,13 @@ const style = {
 };
 const LeftSideBar = () => {
   const [islogin, setisLogin] = useRecoilState(isLogin);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [logOutopen, setlogOutopen] = useState(false);
+  const [logOutopen, setlogOutopen] = React.useState(false);
   const handlelogOutOpen = () => setlogOutopen(true);
   const handlelogOutClose = () => setlogOutopen(false);
+
   let name = JSON.parse(localStorage.getItem("userData"));
   let names = name.username;
 
@@ -121,6 +122,7 @@ const LeftSideBar = () => {
           {(popupState) => (
             <div>
               <Button
+                // variant="contained"
                 {...bindTrigger(popupState)}
                 sx={{
                   textTransform: "none",
@@ -136,6 +138,7 @@ const LeftSideBar = () => {
                 <div
                   style={{
                     display: "flex",
+                    // justifyContent: "space-between",
                     width: "100%",
                   }}
                 >
@@ -164,10 +167,19 @@ const LeftSideBar = () => {
                 sx={{ height: "200px" }}
               >
                 <Button
-                  sx={{ display: "block", width: "100%" }}
+                  sx={{
+                    display: "block",
+                    width: "100%",
+                    background: "black",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "black",
+                    },
+                  }}
                   onClick={handlelogOutOpen}
                 >
-                  ADD
+                  Add an existing account
                 </Button>
                 <Modal
                   open={logOutopen}
@@ -176,13 +188,31 @@ const LeftSideBar = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={style}>
-                    <p style={{ width: "100%", textAlign: "center" }}>
+                    <p
+                      style={{
+                        width: "100%",
+                        textAlign: "center",
+                        color: "black",
+                      }}
+                    >
                       <TwitterIcon sx={{ color: "#42a5f5" }} />
                     </p>
-                    <h2 style={{ width: "100%", textAlign: "center" }}>
+                    <h1
+                      style={{
+                        width: "100%",
+                        textAlign: "center",
+                        color: "black",
+                      }}
+                    >
                       Log out of Twitter?
-                    </h2>
-                    <p>
+                    </h1>
+                    <p
+                      style={{
+                        textAlign: "center",
+                        fontSize: "20px",
+                        color: "black",
+                      }}
+                    >
                       You can always log back in at any time. If you just want
                       to switch accounts, you can do that by adding an existing
                       account.
@@ -191,7 +221,21 @@ const LeftSideBar = () => {
                     <Button onClose={handlelogOutClose}>Cancle</Button>
                   </Box>
                 </Modal>
-                <Button onClick={handlelogOutOpen}>Logout</Button>
+                <Button
+                  onClick={handlelogOutOpen}
+                  sx={{
+                    display: "block",
+                    width: "100%",
+                    background: "black",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "black",
+                    },
+                  }}
+                >
+                  Logout @{names}
+                </Button>
               </Popover>
             </div>
           )}
